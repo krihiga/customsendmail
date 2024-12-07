@@ -23,17 +23,27 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
         method: 'POST',
         body: formData,
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to send email');
-        }
-        return response.json();
-    })
-    .then(data => {
-        alert(data.message || 'Email sent successfully!');
-    })
-    .catch(error => {
-        console.error('Error sending email:', error);
-        alert('Error sending email: ' + error.message);
-    });
-})    
+        .then(response => {
+            // Check if the response status is okay
+            if (!response.ok) {
+                return response.json().then(err => {
+                    throw new Error(err.error || 'Failed to send email');
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle success response
+            if (data.success) {
+                alert(data.message || 'Email sent successfully!');
+            } else {
+                // Handle custom error messages from backend
+                throw new Error(data.error || 'An unexpected error occurred');
+            }
+        })
+        .catch(error => {
+            // Catch and alert errors
+            console.error('Error:', error);
+            alert(`Error sending email: ${error.message}`);
+        });
+});
