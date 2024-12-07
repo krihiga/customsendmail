@@ -19,20 +19,21 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
     }
 
     // Send the form data to your backend
-    fetch('https://customsendmail.vercel.app/api/sendmail', { // Replace with your deployed Vercel URL
+    fetch('https://mail-with-attachment.vercel.app/api/sendmail', { // Replace with your deployed Vercel URL
         method: 'POST',
         body: formData,
     })
-    .then(response => response.json()) // Parse JSON response
-    .then(data => {
-        if (data.success) {
-            alert(data.message || 'Email sent successfully!');
-        } else {
-            throw new Error(data.error || 'Failed to send email');
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to send email');
         }
+        return response.json();
+    })
+    .then(data => {
+        alert(data.message || 'Email sent successfully!');
     })
     .catch(error => {
         console.error('Error sending email:', error);
         alert('Error sending email: ' + error.message);
     });
-});
+})    
