@@ -380,7 +380,7 @@ document.getElementById('logoOrderForm').addEventListener('submit', function (e)
     }
 
     // Send the form data to your backend
-    fetch('/api/sendmail', { // Replace with your deployed Vercel URL
+    fetch('https://customsendmail.vercel.app/api/sendmail', { // Replace with your deployed Vercel URL
         method: 'POST',
         body: formData,
     })
