@@ -19,7 +19,7 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
     }
 
     // Send the form data to your backend
-    fetch('https://mail-with-attachment.vercel.app/api/sendmail', { // Replace with your deployed Vercel URL
+    fetch('https://mail-with-attachment.vercel.app/api/sendMail', { // Replace with your deployed Vercel URL
         method: 'POST',
         body: formData,
     })
