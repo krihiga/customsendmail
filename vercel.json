@@ -3,8 +3,8 @@
 
     "routes": [
       {
-        "src": "/api/sendMail",
-        "dest": "/api/sendMail.js"
+        "src": "/api/sendmail",
+        "dest": "/api/sendmail.js"
       }
     ]
   }
