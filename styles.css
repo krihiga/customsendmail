@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.email-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="email"],
+input[type="text"],
+textarea,
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #398439;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+textarea:focus,
+input[type="file"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+input[type="file"] {
+    padding: 5px;
+    font-size: 14px;
+}
+
+form p {
+    font-size: 14px;
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+}
