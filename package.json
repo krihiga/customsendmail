@@ -10,12 +10,15 @@
   },
   "name": "customsendmail",
   "version": "1.0.0",
-  "devDependencies": {},
+  "devDependencies": {
+    "@vercel/node": "^2.11.0"
+  },
   "scripts": {
-    "start": "node sendmail.js"
+    "start": "node sendmail.js",
+    "deploy": "vercel --prod"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Send emails using Vercel"
 }
