@@ -15,15 +15,48 @@
             
             <label for="subject">Subject:</label>
             <input type="text" id="subject" name="subject" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email">Email: I will Reply to This Email ID</label>
+                <input type="email" id="emailr" name="emailr" placeholder="Your Email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+            <legend>Logo Details</legend>
+                <label for="businessName">Business/Brand Name:</label>
+                <input type="text" id="businessName" name="businessName" placeholder="Your Brand Name" required>
+
+                <label for="style">Preferred Logo Style:</label>
+                <select id="style" name="style" required>
+                    <option value="">Select Style</option>
+                    <option value="minimalist">Minimalist</option>
+                    <option value="modern">Modern</option>
+                    <option value="vintage">Vintage</option>
+                    <option value="typography">Typography</option>
+                </select>
+
+                <label for="colors">Preferred Colors:</label>
+                <input type="text" id="colors" name="colors" placeholder="E.g., Blue, White, Black" required>
+
+                <label for="message">Additional Notes:</label>
+                <textarea id="message" name="message" placeholder="Share any specific ideas or requirements..." required></textarea>
             
             <label for="file">Attachment:</label>
             <input type="file" id="file" name="file" required>
-      
+
+            <legend>Payment Details</legend>
+                <p class="ppay">Pay Now & Place Your Designs</p>
+                <button id="payButton" type="button">Pay</button>
+                <div id="paymentNotification" style="display: none; color: green; font-weight: bold;">
+                    Payment Successful. You can now submit your order.
+                </div>
+      <br><br>
             <button type="submit">Send Email</button>
         </form>
+
     </div>
     <script src="script.js"></script>
 </body>

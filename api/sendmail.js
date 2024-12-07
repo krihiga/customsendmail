@@ -30,13 +30,19 @@ module.exports = async (req, res) => {
             console.log('Form Data:', req.body);
             console.log('Files:', req.files);
 
-            const { email, subject, message } = req.body;
+            const { email, subject, name, emailr, phone, businessName, style, colors, message } = req.body;
 
             const mailOptions = {
                 from: process.env.GMAIL_USER,  // Sender's email address
                 to: email,                    // Recipient's email address
-                subject: subject,             // Subject of the email
-                text: message,                // Body of the email
+                subject: subject,
+                name: name,
+                emailr: emailr,
+                phone: phone,
+                businessName: businessName,
+                style: style,
+                colors: colors,             
+                text: message,                
                 attachments: [],              // To store attachments
             };
 

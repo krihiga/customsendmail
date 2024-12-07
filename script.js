@@ -3,6 +3,12 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
 
     const email = document.getElementById('email').value;
     const subject = document.getElementById('subject').value;
+    const name = document.getElementById('name').value;
+    const emailr = document.getElementById('emailr').value;
+    const phone = document.getElementById('phone').value;
+    const businessName = document.getElementById('businessName').value;
+    const style = document.getElementById('style').value;
+    const colors = document.getElementById('colors').value;
     const message = document.getElementById('message').value;
     const fileInput = document.getElementById('file');
     const files = fileInput.files;
@@ -11,7 +17,14 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('subject', subject);
+    formData.append('name', name);
+    formData.append('emailr', emailr);
+    formData.append('phone', phone);
+    formData.append('businessName', businessName);
+    formData.append('style', style);
+    formData.append('colors', colors);
     formData.append('message', message);
+
 
     // Append each file to FormData
     for (let i = 0; i < files.length; i++) {
