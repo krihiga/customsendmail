@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API route for sending the email
-app.post('/api/sendmail', (req, res) => {
+app.post('https://customsendmail.vercel.app/api/sendmail', (req, res) => {
     // Parse the incoming form data with file attachments
     upload(req, res, async (err) => {
         if (err) {
