@@ -23,17 +23,16 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
         method: 'POST',
         body: formData,
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to send email');
-        }
-        return response.json();
-    })
+    .then(response => response.json()) // Parse JSON response
     .then(data => {
-        alert(data.message || 'Email sent successfully!');
+        if (data.success) {
+            alert(data.message || 'Email sent successfully!');
+        } else {
+            throw new Error(data.error || 'Failed to send email');
+        }
     })
     .catch(error => {
         console.error('Error sending email:', error);
         alert('Error sending email: ' + error.message);
     });
-})    
+});
