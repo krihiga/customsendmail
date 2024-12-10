@@ -7,17 +7,14 @@ const transporter = nodemailer.createTransport({
     secure: false,           // Use TLS
     auth: {
         user: process.env.GMAIL_USER,  // Your Gmail address
-        pass: process.env.GMAIL_PASS,  // Your Gmail App password or regular password
+        pass: process.env.GMAIL_PASS,  // Your Gmail App password
     },
 });
 
-// API route for sending the email
 module.exports = async (req, res) => {
     if (req.method === 'POST') {
         try {
-            // Log the incoming form data to check
-            console.log('Form Data:', req.body);
-
+            // Ensure the body is parsed correctly (requires middleware like express.json())
             const { toEmail, subject, message } = req.body;
 
             if (!toEmail || !subject || !message) {
