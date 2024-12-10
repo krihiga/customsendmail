@@ -1,20 +1,23 @@
 const nodemailer = require('nodemailer');
 
-// Create a transporter using Gmail's SMTP server
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',  // Gmail's SMTP server
-    port: 587,               // TLS port
-    secure: false,           // Use TLS
+    host: 'smtp.gmail.com',  
+    port: 587,               
+    secure: false,           
     auth: {
-        user: process.env.GMAIL_USER,  // Your Gmail address
-        pass: process.env.GMAIL_PASS,  // Your Gmail App password
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
     },
 });
 
 module.exports = async (req, res) => {
+    console.log('Request method:', req.method);
+    console.log('Request headers:', req.headers);
+
     if (req.method === 'POST') {
         try {
-            // Ensure the body is parsed correctly (requires middleware like express.json())
+            console.log('Request body:', req.body);
+
             const { toEmail, subject, message } = req.body;
 
             if (!toEmail || !subject || !message) {
@@ -22,15 +25,14 @@ module.exports = async (req, res) => {
             }
 
             const mailOptions = {
-                from: process.env.GMAIL_USER,  // Sender's email address
-                to: toEmail,                  // Recipient's email address
-                subject: subject,             // Subject of the email
-                text: message,                // Body of the email
+                from: process.env.GMAIL_USER,
+                to: toEmail,
+                subject,
+                text: message,
             };
 
-            // Send the email
             const info = await transporter.sendMail(mailOptions);
-            console.log('Email sent: ' + info.response);
+            console.log('Email sent successfully:', info);
             res.status(200).json({ message: 'Email sent successfully!' });
         } catch (error) {
             console.error('Error sending email:', error);
