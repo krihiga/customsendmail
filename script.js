@@ -8,20 +8,22 @@ emailForm.addEventListener('submit', async function (event) {
     console.log('Form data:', { toEmail, subject, message });
 
     try {
+        console.log('Sending fetch request...');
         const response = await fetch('https://customsendmail.vercel.app/api/sendMail', { // Replace with your backend URL
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ toEmail, subject, message }),
         });
-
-        console.log('Response:', response);
-
+    
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+    
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Error response:', errorText);
+            console.error('Error response body:', errorText);
             throw new Error('Failed to send email');
         }
-
+    
         const data = await response.json();
         console.log('Success response:', data);
         alert(data.message || 'Email sent successfully!');
@@ -29,4 +31,4 @@ emailForm.addEventListener('submit', async function (event) {
         console.error('Error sending email:', error);
         alert('Error sending email: ' + error.message);
     }
-});
+})    
