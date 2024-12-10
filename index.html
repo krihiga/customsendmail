@@ -4,41 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Email</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-        .email-form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .email-form input, .email-form textarea, .email-form button {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .email-form button {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-        .email-form button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+   
 </head>
 <body>
     <div class="email-form">
@@ -51,29 +17,6 @@
         </form>
     </div>
 
-    <script>
-        const emailForm = document.getElementById('emailForm');
-        emailForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const toEmail = document.getElementById('toEmail').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // Send data to the server
-            const response = await fetch('https://customsendmail.vercel.app/api/sendmail', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ toEmail, subject, message })
-            });
-
-            
-            if (response.ok) {
-                alert('Email sent successfully!');
-                emailForm.reset();
-            } else {
-                alert('Failed to send email. Try again.');
-            }
-        });
-    </script>
+    
 </body>
 </html>

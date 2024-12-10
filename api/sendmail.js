@@ -1,36 +1,45 @@
-const express = require('express');
-const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
-const app = express();
-
-app.use(bodyParser.json());
-
-app.post('api/sendmail', async (req, res) => {
-    const { toEmail, subject, message } = req.body;
-
-    // Configure Nodemailer
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_USER,  // Your Gmail address
-            pass: process.env.EMAIL_PASS, // Your Gmail App Password
-        },
-    });
-
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: toEmail,
-        subject: subject,
-        text: message,
-    };
-
-    try {
-        await transporter.sendmail(mailOptions);
-        res.status(200).send('Email sent successfully!');
-    } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).send('Failed to send email.');
-    }
+// Create a transporter using Gmail's SMTP server
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',  // Gmail's SMTP server
+    port: 587,               // TLS port
+    secure: false,           // Use TLS
+    auth: {
+        user: process.env.GMAIL_USER,  // Your Gmail address
+        pass: process.env.GMAIL_PASS,  // Your Gmail App password or regular password
+    },
 });
 
+// API route for sending the email
+module.exports = async (req, res) => {
+    if (req.method === 'POST') {
+        try {
+            // Log the incoming form data to check
+            console.log('Form Data:', req.body);
+
+            const { toEmail, subject, message } = req.body;
+
+            if (!toEmail || !subject || !message) {
+                return res.status(400).json({ error: 'All fields are required' });
+            }
+
+            const mailOptions = {
+                from: process.env.GMAIL_USER,  // Sender's email address
+                to: toEmail,                  // Recipient's email address
+                subject: subject,             // Subject of the email
+                text: message,                // Body of the email
+            };
+
+            // Send the email
+            const info = await transporter.sendmail(mailOptions);
+            console.log('Email sent: ' + info.response);
+            res.status(200).json({ message: 'Email sent successfully!' });
+        } catch (error) {
+            console.error('Error sending email:', error);
+            res.status(500).json({ error: 'Error sending email' });
+        }
+    } else {
+        res.status(405).json({ error: 'Method Not Allowed' });
+    }
+};
