@@ -6,7 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.post('/send-email', async (req, res) => {
+app.post('api/sendmail', async (req, res) => {
     const { toEmail, subject, message } = req.body;
 
     // Configure Nodemailer
@@ -26,7 +26,7 @@ app.post('/send-email', async (req, res) => {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        await transporter.sendmail(mailOptions);
         res.status(200).send('Email sent successfully!');
     } catch (error) {
         console.error('Error sending email:', error);
