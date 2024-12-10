@@ -13,7 +13,7 @@ emailForm.addEventListener('submit', async function(event) {
 
 
    // Send the form data to your backend
-fetch('https://customsendmail.vercel.app/api/sendmail', { // Replace with your deployed Vercel URL
+fetch('https://customsendmail.vercel.app/api/sendMail', { // Replace with your deployed Vercel URL
 method: 'POST',
 body: formData,
 })
